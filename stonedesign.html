@@ -1,0 +1,627 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter+Tight:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+.sd-root{--basalt:#191C1D;      /* deep stone ground */
+    --basalt-2:#202425;    /* raised panels on dark */
+    --slate:#2B3132;       /* borders / lines on dark */
+    --honed:#E4E4DE;       /* cool honed-limestone light bg */
+    --quarry:#F3F3EE;      /* lightest marble/paper */
+    --vein:#4F8574;        /* verdigris / serpentine — the one accent */
+    --vein-bright:#6FA593;
+    --brass:#B08D57;       /* whisper of warm metal, used sparingly */
+    --ink:#14181A;         /* text on light */
+    --ink-soft:#4A5150;    /* secondary text on light */
+    --paper:#EDEDE7;       /* text on dark */
+    --mist:#9AA3A0;        /* secondary text on dark */
+    --maxw:1200px;
+    --gutter:clamp(20px,5vw,80px); font-family:'Inter Tight',system-ui,sans-serif;
+    background:var(--basalt);
+    color:var(--paper);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden; overflow-x:clip; position:relative;} .sd-root section, .sd-root footer.site{width:100vw; margin-left:calc(50% - 50vw); max-width:100vw;} .sd-root.sd-anim .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;} .sd-root.sd-anim .reveal.in{opacity:1; transform:none;}
+
+  
+
+  .sd-root *{box-sizing:border-box;margin:0;padding:0}
+  
+  @media (prefers-reduced-motion:reduce){}
+  
+
+  .sd-root /* ---------- type system ---------- */
+  .display{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.02;letter-spacing:-0.02em}
+  .sd-root .mono{font-family:'Space Mono',monospace;font-weight:400}
+  .sd-root .eyebrow{
+    font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--vein-bright);display:inline-flex;align-items:center;gap:.7em;
+  }
+  .sd-root .eyebrow::before{content:"";width:26px;height:1px;background:var(--vein);display:inline-block}
+  .sd-root .eyebrow.on-light{color:#2f6555}
+  .sd-root .eyebrow.on-light::before{background:#2f6555}
+
+  .sd-root a{color:inherit;text-decoration:none}
+
+  .sd-root /* ---------- layout ---------- */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+  .sd-root section{position:relative}
+  .sd-root .band{padding-block:clamp(80px,11vw,150px)}
+  .sd-root .light{background:var(--honed);color:var(--ink)}
+  .sd-root .light .display{color:var(--ink)}
+  .sd-root .lighter{background:var(--quarry);color:var(--ink)}
+
+  .sd-root /* ---------- nav ---------- */
+  header.nav{
+    position:static;z-index:1;
+    background:rgba(25,28,29,.72);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--slate);
+  }
+  .sd-root .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .sd-root .brand{display:flex;align-items:center;gap:12px;font-family:'Fraunces';font-weight:600;font-size:1.15rem;letter-spacing:-.01em}
+  .sd-root .brand .mark{width:26px;height:26px;flex:none}
+  .sd-root .nav-links{display:flex;gap:30px;align-items:center}
+  .sd-root .nav-links a{font-size:.9rem;color:var(--mist);transition:color .2s}
+  .sd-root .nav-links a:hover{color:var(--paper)}
+  .sd-root .nav-cta{
+    font-size:.82rem;font-family:'Space Mono';letter-spacing:.04em;
+    border:1px solid var(--vein);color:var(--vein-bright);
+    padding:9px 16px;border-radius:2px;transition:.25s;
+  }
+  .sd-root .nav-cta:hover{background:var(--vein);color:var(--basalt)}
+  .sd-root .nav-toggle{display:none}
+  @media(max-width:820px){
+    .sd-root .nav-links{display:none}
+  }
+
+  .sd-root /* ---------- vein signature (desktop spine) ---------- */
+  .vein-spine{
+    position:absolute;top:0;left:calc(var(--gutter) - 2px);width:60px;height:100%;
+    pointer-events:none;z-index:2;
+  }
+  @media(max-width:1000px){.sd-root .vein-spine{display:none}}
+  .sd-root .vein-spine path{
+    fill:none;stroke:var(--vein);stroke-width:1.6;
+    filter:drop-shadow(0 0 3px rgba(79,133,116,.5));
+  }
+
+  .sd-root /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;min-height:92vh;display:flex;align-items:center}
+  .sd-root .hero-slab{position:absolute;inset:0;z-index:0}
+  .sd-root .hero-slab svg{width:100%;height:100%}
+  .sd-root .hero-veil{
+    position:absolute;inset:0;z-index:1;
+    background:
+      radial-gradient(120% 90% at 15% 20%, rgba(25,28,29,.35), transparent 60%),
+      linear-gradient(180deg, rgba(25,28,29,.55) 0%, rgba(25,28,29,.82) 60%, var(--basalt) 100%),
+      linear-gradient(90deg, rgba(25,28,29,.9) 0%, rgba(25,28,29,.4) 45%, rgba(25,28,29,.15) 100%);
+  }
+  .sd-root .hero-inner{position:relative;z-index:3;padding-block:120px 90px;max-width:900px}
+  .sd-root .hero h1{
+    font-size:clamp(2.6rem,7vw,5.4rem);margin:26px 0 0;font-weight:600;
+    text-wrap:balance;
+  }
+  .sd-root .hero h1 em{font-style:italic;font-weight:400;color:var(--vein-bright)}
+  .sd-root .hero .lede{
+    margin-top:28px;max-width:610px;font-size:clamp(1.02rem,1.5vw,1.18rem);
+    color:var(--mist);
+  }
+  .sd-root .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px}
+  .sd-root .btn{
+    display:inline-flex;align-items:center;gap:10px;font-family:'Space Mono';
+    font-size:.86rem;letter-spacing:.03em;padding:15px 24px;border-radius:2px;
+    transition:.25s;border:1px solid transparent;cursor:pointer;
+  }
+  .sd-root .btn-primary{background:var(--vein);color:var(--basalt);font-weight:700}
+  .sd-root .btn-primary:hover{background:var(--vein-bright);transform:translateY(-2px)}
+  .sd-root .btn-ghost{border-color:var(--slate);color:var(--paper)}
+  .sd-root .btn-ghost:hover{border-color:var(--vein);color:var(--vein-bright)}
+  .sd-root .proof-strip{
+    display:flex;gap:0;flex-wrap:wrap;margin-top:54px;border-top:1px solid var(--slate);
+    padding-top:22px;
+  }
+  .sd-root .proof-strip div{
+    font-family:'Space Mono';font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--mist);padding-right:28px;margin-right:28px;border-right:1px solid var(--slate);
+  }
+  .sd-root .proof-strip div:last-child{border-right:none}
+  .sd-root .proof-strip b{color:var(--vein-bright);font-weight:400}
+
+  .sd-root /* ---------- section heading block ---------- */
+  .head-block{max-width:720px}
+  .sd-root .head-block h2{
+    font-size:clamp(2rem,4.4vw,3.4rem);margin-top:20px;font-weight:600;text-wrap:balance;
+  }
+  .sd-root .head-block p.intro{margin-top:22px;font-size:1.08rem;color:var(--ink-soft);max-width:600px}
+  .sd-root .light .head-block p.intro{color:var(--ink-soft)}
+
+  .sd-root /* ---------- WHY ---------- */
+  .why-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,6vw,90px);align-items:center;margin-top:60px}
+  @media(max-width:900px){.sd-root .why-grid{grid-template-columns:1fr;gap:44px}}
+  .sd-root .why-text p{margin-top:20px;font-size:1.06rem;color:var(--ink-soft);max-width:52ch}
+  .sd-root .why-text .sig{
+    margin-top:30px;font-family:'Fraunces';font-style:italic;font-size:1.15rem;color:var(--ink);
+  }
+  .sd-root .why-text .sig span{display:block;font-family:'Space Mono';font-style:normal;font-size:.72rem;
+    letter-spacing:.16em;text-transform:uppercase;color:#2f6555;margin-top:6px}
+  .sd-root .slab-card{
+    position:relative;aspect-ratio:4/5;border-radius:3px;overflow:hidden;
+    border:1px solid rgba(0,0,0,.1);box-shadow:0 30px 60px -30px rgba(20,24,26,.5);
+  }
+  .sd-root .slab-card svg{width:100%;height:100%;display:block}
+  .sd-root .slab-card .tag{
+    position:absolute;left:16px;bottom:16px;background:rgba(20,24,26,.82);
+    color:var(--paper);font-family:'Space Mono';font-size:.68rem;letter-spacing:.08em;
+    padding:8px 12px;border-radius:2px;border-left:2px solid var(--vein);
+  }
+
+  .sd-root /* ---------- HOW (differentiator core) ---------- */
+  .how-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--slate);
+    margin-top:64px;border:1px solid var(--slate);border-radius:3px;overflow:hidden}
+  @media(max-width:760px){.sd-root .how-cards{grid-template-columns:1fr}}
+  .sd-root .how-card{background:var(--basalt-2);padding:clamp(28px,3.4vw,44px);position:relative;transition:background .3s}
+  .sd-root .how-card:hover{background:#252b2c}
+  .sd-root .how-card .idx{font-family:'Space Mono';font-size:.72rem;letter-spacing:.14em;color:var(--vein-bright)}
+  .sd-root .how-card h3{font-family:'Fraunces';font-weight:600;font-size:1.5rem;margin-top:16px;letter-spacing:-.01em}
+  .sd-root .how-card p{margin-top:14px;color:var(--mist);font-size:.98rem;max-width:44ch}
+  .sd-root .how-card .stone-ico{width:34px;height:34px;margin-bottom:4px}
+
+  .sd-root /* contrast device */
+  .contrast{
+    margin-top:64px;border:1px solid var(--slate);border-radius:3px;overflow:hidden;
+    display:grid;grid-template-columns:1fr 1fr;
+  }
+  @media(max-width:640px){.sd-root .contrast{grid-template-columns:1fr}}
+  .sd-root .contrast .col{padding:clamp(26px,3vw,40px)}
+  .sd-root .contrast .col.them{background:var(--basalt-2)}
+  .sd-root .contrast .col.us{background:linear-gradient(180deg,#1f2a27,#1c2321);border-left:1px solid var(--slate)}
+  @media(max-width:640px){.sd-root .contrast .col.us{border-left:none;border-top:1px solid var(--slate)}}
+  .sd-root .contrast h4{font-family:'Space Mono';font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist)}
+  .sd-root .contrast .col.us h4{color:var(--vein-bright)}
+  .sd-root .contrast ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:15px}
+  .sd-root .contrast li{display:flex;gap:12px;font-size:.98rem;color:var(--mist);line-height:1.4}
+  .sd-root .contrast .col.us li{color:var(--paper)}
+  .sd-root .contrast li .m{flex:none;font-family:'Space Mono';color:#5c6564;margin-top:1px}
+  .sd-root .contrast .col.us li .m{color:var(--vein-bright)}
+
+  .sd-root /* ---------- WHAT ---------- */
+  .what-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:60px}
+  @media(max-width:860px){.sd-root .what-grid{grid-template-columns:1fr;max-width:440px}}
+  .sd-root .what-card{border-radius:3px;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,.08);
+    box-shadow:0 20px 40px -28px rgba(20,24,26,.35);transition:transform .3s,box-shadow .3s}
+  .sd-root .what-card:hover{transform:translateY(-4px);box-shadow:0 30px 50px -28px rgba(20,24,26,.45)}
+  .sd-root .what-card .pic{aspect-ratio:3/2;position:relative}
+  .sd-root .what-card .pic svg{width:100%;height:100%;display:block}
+  .sd-root .what-card .body{padding:24px 24px 28px}
+  .sd-root .what-card h3{font-family:'Fraunces';font-weight:600;font-size:1.35rem;color:var(--ink)}
+  .sd-root .what-card p{margin-top:10px;color:var(--ink-soft);font-size:.96rem}
+
+  .sd-root .materials{margin-top:56px;border-top:1px solid rgba(0,0,0,.12);padding-top:34px}
+  .sd-root .materials .lbl{font-family:'Space Mono';font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#2f6555}
+  .sd-root .mat-row{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:20px}
+  .sd-root .mat-chip{font-family:'Fraunces';font-size:1.05rem;color:var(--ink);border:1px solid rgba(0,0,0,.16);
+    padding:8px 18px;border-radius:100px;transition:.25s}
+  .sd-root .mat-chip:hover{border-color:var(--vein);color:#2f6555;background:rgba(79,133,116,.06)}
+  .sd-root .mat-note{margin-top:22px;font-size:.9rem;color:var(--ink-soft);max-width:60ch}
+
+  .sd-root /* ---------- portfolio ---------- */
+  .port-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+  @media(max-width:860px){.sd-root .port-grid{grid-template-columns:repeat(2,1fr)}}
+  .sd-root .port-tile{position:relative;border-radius:3px;overflow:hidden;aspect-ratio:1;border:1px solid var(--slate)}
+  .sd-root .port-tile:nth-child(1), .sd-root .port-tile:nth-child(6){aspect-ratio:1/2;grid-row:span 2}
+  @media(max-width:860px){.sd-root .port-tile:nth-child(1), .sd-root .port-tile:nth-child(6){aspect-ratio:1;grid-row:span 1}}
+  .sd-root .port-tile svg{width:100%;height:100%;display:block}
+  .sd-root .port-tile .cap{position:absolute;left:0;bottom:0;right:0;padding:14px;
+    background:linear-gradient(0deg,rgba(20,24,26,.9),transparent);
+    font-family:'Space Mono';font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mist)}
+
+  .sd-root /* ---------- proof / stats + testimonials ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,0,0,.1);
+    border:1px solid rgba(0,0,0,.1);border-radius:3px;overflow:hidden;margin-top:10px}
+  @media(max-width:720px){.sd-root .stats{grid-template-columns:repeat(2,1fr)}}
+  .sd-root .stat{background:var(--quarry);padding:30px 24px}
+  .sd-root .stat .n{font-family:'Fraunces';font-size:clamp(2.1rem,4vw,2.9rem);font-weight:600;color:var(--ink);line-height:1}
+  .sd-root .stat .k{font-family:'Space Mono';font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px}
+  .sd-root .tstack{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+  @media(max-width:820px){.sd-root .tstack{grid-template-columns:1fr;max-width:560px}}
+  .sd-root .quote{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:3px;padding:30px 28px;position:relative}
+  .sd-root .quote::before{content:"\201C";font-family:'Fraunces';font-size:4rem;color:var(--vein);
+    position:absolute;top:6px;left:20px;opacity:.25;line-height:1}
+  .sd-root .quote p{position:relative;font-size:1rem;color:var(--ink);line-height:1.6}
+  .sd-root .quote .who{margin-top:20px;font-family:'Space Mono';font-size:.74rem;letter-spacing:.1em;
+    text-transform:uppercase;color:#2f6555;display:flex;align-items:center;gap:10px}
+  .sd-root .quote .who .dot{width:26px;height:26px;border-radius:50%;background:var(--vein);color:#fff;
+    display:grid;place-items:center;font-family:'Fraunces';font-size:.9rem}
+
+  .sd-root /* ---------- CTA ---------- */
+  .cta-final{position:relative;overflow:hidden}
+  .sd-root .cta-final .hero-slab{opacity:.5}
+  .sd-root .cta-inner{position:relative;z-index:3;display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:end}
+  @media(max-width:820px){.sd-root .cta-inner{grid-template-columns:1fr;gap:40px}}
+  .sd-root .cta-inner h2{font-family:'Fraunces';font-size:clamp(2rem,4.6vw,3.4rem);font-weight:600;text-wrap:balance}
+  .sd-root .cta-inner .lede{color:var(--mist);margin-top:20px;max-width:46ch}
+  .sd-root .contact-card{background:var(--basalt-2);border:1px solid var(--slate);border-radius:3px;padding:30px}
+  .sd-root .contact-card .row{padding:16px 0;border-bottom:1px solid var(--slate)}
+  .sd-root .contact-card .row:last-child{border-bottom:none;padding-bottom:0}
+  .sd-root .contact-card .row:first-child{padding-top:0}
+  .sd-root .contact-card .k{font-family:'Space Mono';font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vein-bright)}
+  .sd-root .contact-card .v{margin-top:6px;font-size:1.02rem;color:var(--paper)}
+  .sd-root .contact-card .v a:hover{color:var(--vein-bright)}
+
+  .sd-root /* ---------- footer ---------- */
+  footer.site{border-top:1px solid var(--slate);padding-block:50px 40px}
+  .sd-root .foot-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+  .sd-root .foot-nav{display:flex;gap:44px;flex-wrap:wrap}
+  .sd-root .foot-col h5{font-family:'Space Mono';font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vein-bright);margin-bottom:14px}
+  .sd-root .foot-col a{display:block;color:var(--mist);font-size:.92rem;padding:5px 0;transition:color .2s}
+  .sd-root .foot-col a:hover{color:var(--paper)}
+  .sd-root .foot-bottom{margin-top:44px;padding-top:24px;border-top:1px solid var(--slate);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-family:'Space Mono';font-size:.72rem;letter-spacing:.06em;color:#6b7473}
+
+  .sd-root /* ---------- reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .sd-root .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .sd-root .reveal{opacity:1;transform:none;transition:none}
+    .sd-root .vein-spine path{stroke-dasharray:none!important;stroke-dashoffset:0!important}
+  }
+  .sd-root :focus-visible{outline:2px solid var(--vein-bright);outline-offset:3px;border-radius:2px}
+
+</style>
+
+<div class="sd-root">
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Stone Design home">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M20 3 L34 12 L34 28 L20 37 L6 28 L6 12 Z" fill="none" stroke="#4F8574" stroke-width="1.6"/>
+        <path d="M6 12 L20 21 L34 12 M20 21 L20 37" fill="none" stroke="#4F8574" stroke-width="1.2" opacity=".6"/>
+        <path d="M11 16 L20 21 L29 16" fill="none" stroke="#B08D57" stroke-width="1" opacity=".7"/>
+      </svg>
+      Stone&nbsp;Design
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#why">Why us</a>
+      <a href="#how">How we work</a>
+      <a href="#what">What we make</a>
+      <a href="#work">Work</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Visit the yard →</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero-slab" aria-hidden="true">
+    <svg preserveAspectRatio="xMidYMid slice" viewBox="0 0 1400 900">
+      <defs>
+        <filter id="stone1">
+          <feTurbulence type="fractalNoise" baseFrequency="0.011 0.028" numOctaves="5" seed="7" result="n"/>
+          <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.10  0 0 0 0 0.13  0 0 0 0 0.13  0 0 0 0.9 0"/>
+        </filter>
+        <linearGradient id="base1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#20262b"/>
+          <stop offset="0.5" stop-color="#191d1f"/>
+          <stop offset="1" stop-color="#101314"/>
+        </linearGradient>
+      </defs>
+      <rect width="1400" height="900" fill="url(#base1)"/>
+      <rect width="1400" height="900" filter="url(#stone1)" opacity="0.55"/>
+      <!-- vein movement painted into the slab -->
+      <path d="M1050 -20 C 980 180, 1180 320, 1020 470 S 1160 720, 1040 920" fill="none" stroke="#4F8574" stroke-width="2.2" opacity="0.5"/>
+      <path d="M1090 -20 C 1030 200, 1220 340, 1070 500 S 1200 760, 1090 920" fill="none" stroke="#6FA593" stroke-width="1" opacity="0.35"/>
+      <path d="M980 -20 C 940 220, 1120 360, 970 540 S 1090 800, 990 920" fill="none" stroke="#B08D57" stroke-width="1" opacity="0.22"/>
+    </svg>
+  </div>
+  <div class="hero-veil" aria-hidden="true"></div>
+
+  <div class="wrap hero-inner">
+    <span class="eyebrow reveal">Family-run fabricator · Norcross, GA</span>
+    <h1 class="display reveal">No two slabs are alike.<br><em>Neither is the way we cut yours.</em></h1>
+    <p class="lede reveal">Stone Design is a family shop in Norcross serving metro Atlanta. We hand-select the slab, template it to the millimeter, cut and finish it under our own roof, and install it ourselves — so one team answers for the whole result.</p>
+    <div class="hero-ctas reveal">
+      <a class="btn btn-primary" href="#contact">Book a slab-yard visit</a>
+      <a class="btn btn-ghost" href="#how">See how we're different →</a>
+    </div>
+    <div class="proof-strip reveal">
+      <div>In-house <b>fabrication</b></div>
+      <div><b>100%</b> materials &amp; workmanship warranty</div>
+      <div><b>15+</b> years, family-owned</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY ================= -->
+<section class="band light" id="why">
+  <svg class="vein-spine" viewBox="0 0 60 1000" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M30 -20 C 10 150, 50 300, 28 460 S 12 780, 30 1020" style="stroke:#2f6555;opacity:.55"/>
+  </svg>
+  <div class="wrap">
+    <div class="head-block reveal">
+      <span class="eyebrow on-light">Why we do it</span>
+      <h2 class="display">A countertop outlives the kitchen it's built for.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-text reveal">
+        <p>The Toledo family has spent a working lifetime around stone — from the quarry countries of South America to the shop floor here in Georgia. That background changes how we see a slab. It isn't inventory. It's a single, unrepeatable piece of the earth that a family will gather around for the next thirty years.</p>
+        <p>So we refuse to treat fabrication like a commodity. We'd rather be the shop that knows your slab by name than the one that moves the most square feet. That belief runs through every cut we make — and it's the reason our customers keep sending their neighbors.</p>
+        <div class="sig">— Regis &amp; Divina Toledo
+          <span>Owners, Stone Design</span>
+        </div>
+      </div>
+      <div class="slab-card reveal" aria-label="Quartzite slab with natural veining">
+        <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" role="img">
+          <defs>
+            <filter id="stone2">
+              <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="5" seed="21"/>
+              <feColorMatrix type="matrix" values="0 0 0 0 0.86  0 0 0 0 0.86  0 0 0 0 0.83  0 0 0 0.85 0"/>
+            </filter>
+            <linearGradient id="base2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f2f1ec"/><stop offset="1" stop-color="#d9d9d1"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="500" fill="url(#base2)"/>
+          <rect width="400" height="500" filter="url(#stone2)" opacity="0.5"/>
+          <path d="M-20 120 C 120 90, 200 200, 340 150 S 460 260, 520 210" fill="none" stroke="#4F8574" stroke-width="3" opacity="0.55"/>
+          <path d="M-20 150 C 140 130, 220 240, 360 190" fill="none" stroke="#6FA593" stroke-width="1.4" opacity="0.5"/>
+          <path d="M-20 300 C 130 270, 230 380, 420 330" fill="none" stroke="#B08D57" stroke-width="1.6" opacity="0.4"/>
+          <path d="M60 -20 C 100 160, 40 300, 120 520" fill="none" stroke="#7d8a86" stroke-width="1" opacity="0.35"/>
+        </svg>
+        <span class="tag">Emerald Quartzite · hand-selected</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW (differentiator) ================= -->
+<section class="band" id="how">
+  <svg class="vein-spine" viewBox="0 0 60 1000" preserveAspectRatio="none" aria-hidden="true">
+    <path id="veinDraw" d="M30 -20 C 8 160, 52 320, 26 480 S 14 800, 30 1020"/>
+  </svg>
+  <div class="wrap">
+    <div class="head-block reveal">
+      <span class="eyebrow">How we're different</span>
+      <h2 class="display">One roof. One crew. One point of accountability.</h2>
+      <p class="intro" style="color:var(--mist)">Most countertop "fabricators" sell you a four-inch sample, then ship your job to a shop you'll never see. When something's off, the finger-pointing starts. We built Stone Design to work the opposite way — every step stays with the same team.</p>
+    </div>
+
+    <div class="how-cards">
+      <div class="how-card reveal">
+        <svg class="stone-ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 10 L16 4 L28 10 L28 22 L16 28 L4 22 Z" fill="none" stroke="#6FA593" stroke-width="1.3"/><path d="M4 10 L16 16 L28 10 M16 16 L16 28" fill="none" stroke="#6FA593" stroke-width="1" opacity=".6"/></svg>
+        <div class="idx">01 — Selection</div>
+        <h3>Pick your actual slab</h3>
+        <p>Natural stone never repeats. You choose the exact slab your counters are cut from — veining, movement and all — and we tag it in your name. No guessing from a sample chip.</p>
+      </div>
+      <div class="how-card reveal">
+        <svg class="stone-ico" viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="5" width="22" height="22" fill="none" stroke="#6FA593" stroke-width="1.3"/><path d="M5 12 L27 12 M12 5 L12 27" stroke="#6FA593" stroke-width="1" opacity=".6"/><circle cx="12" cy="12" r="2" fill="#B08D57"/></svg>
+        <div class="idx">02 — Precision</div>
+        <h3>Templated to the millimeter</h3>
+        <p>We digitally template your space on-site, so seams fall where they should, overhangs land right, and the finished tops fit the first time — not after a second trip.</p>
+      </div>
+      <div class="how-card reveal">
+        <svg class="stone-ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 22 L20 8 L24 12 L10 26 Z" fill="none" stroke="#6FA593" stroke-width="1.3"/><path d="M20 8 L24 4 L28 8 L24 12" fill="none" stroke="#6FA593" stroke-width="1.3"/><path d="M6 22 L4 28 L10 26" fill="none" stroke="#B08D57" stroke-width="1.1"/></svg>
+        <div class="idx">03 — Craft</div>
+        <h3>Cut &amp; finished in-house</h3>
+        <p>Your slab is fabricated and hand-finished in our Norcross shop. Our polishing protects the stone's structure instead of burning it smooth — so the edges hold their depth for years.</p>
+      </div>
+      <div class="how-card reveal">
+        <svg class="stone-ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 L27 8 V16 C27 23 22 27 16 29 C10 27 5 23 5 16 V8 Z" fill="none" stroke="#6FA593" stroke-width="1.3"/><path d="M11 16 L15 20 L22 12" fill="none" stroke="#B08D57" stroke-width="1.6"/></svg>
+        <div class="idx">04 — Accountability</div>
+        <h3>Installed &amp; backed 100%</h3>
+        <p>The people who cut your stone are the people who set it. Materials and workmanship carry a 100% warranty, and there's one number to call if you ever need us. No subcontractor maze.</p>
+      </div>
+    </div>
+
+    <div class="contrast reveal" aria-label="How a typical shop compares to Stone Design">
+      <div class="col them">
+        <h4>The typical shop</h4>
+        <ul>
+          <li><span class="m">–</span> You approve a small sample, not the real slab</li>
+          <li><span class="m">–</span> Fabrication is outsourced to a third party</li>
+          <li><span class="m">–</span> Sales, template and install rarely talk to each other</li>
+          <li><span class="m">–</span> Warranty claims turn into finger-pointing</li>
+        </ul>
+      </div>
+      <div class="col us">
+        <h4>Stone Design</h4>
+        <ul>
+          <li><span class="m">+</span> You stand in front of the exact slab and reserve it</li>
+          <li><span class="m">+</span> Cut and finished in our own Norcross shop</li>
+          <li><span class="m">+</span> One team from first visit to final install</li>
+          <li><span class="m">+</span> 100% warranty, one point of contact, no runaround</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT ================= -->
+<section class="band light" id="what">
+  <svg class="vein-spine" viewBox="0 0 60 1000" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M30 -20 C 12 170, 48 320, 28 500 S 16 820, 30 1020" style="stroke:#2f6555;opacity:.5"/>
+  </svg>
+  <div class="wrap">
+    <div class="head-block reveal">
+      <span class="eyebrow on-light">What we make</span>
+      <h2 class="display">Surfaces for the rooms you actually live in.</h2>
+      <p class="intro">Residential stonework, start to finish — the counters you cook on, the vanities you get ready at, and the features that anchor a room.</p>
+    </div>
+
+    <div class="what-grid">
+      <div class="what-card reveal">
+        <div class="pic"><svg viewBox="0 0 400 267" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Kitchen countertops">
+          <defs><filter id="w1"><feTurbulence type="fractalNoise" baseFrequency="0.014 0.02" numOctaves="4" seed="4"/><feColorMatrix type="matrix" values="0 0 0 0 0.14 0 0 0 0 0.17 0 0 0 0 0.17 0 0 0 0.9 0"/></filter></defs>
+          <rect width="400" height="267" fill="#20262b"/><rect width="400" height="267" filter="url(#w1)" opacity=".6"/>
+          <path d="M-20 90 C 120 60, 240 150, 420 110" fill="none" stroke="#4F8574" stroke-width="2.4" opacity=".6"/>
+          <path d="M-20 120 C 140 100, 260 180, 420 140" fill="none" stroke="#6FA593" stroke-width="1" opacity=".45"/>
+        </svg></div>
+        <div class="body"><h3>Kitchen countertops</h3><p>Islands, perimeters, waterfalls and full-height backsplashes — engineered for the seams to disappear.</p></div>
+      </div>
+      <div class="what-card reveal">
+        <div class="pic"><svg viewBox="0 0 400 267" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Baths and vanities">
+          <defs><filter id="w2"><feTurbulence type="fractalNoise" baseFrequency="0.013 0.019" numOctaves="4" seed="12"/><feColorMatrix type="matrix" values="0 0 0 0 0.85 0 0 0 0 0.85 0 0 0 0 0.82 0 0 0 0.9 0"/></filter></defs>
+          <rect width="400" height="267" fill="#eceae3"/><rect width="400" height="267" filter="url(#w2)" opacity=".5"/>
+          <path d="M-20 100 C 120 70, 260 160, 420 120" fill="none" stroke="#B08D57" stroke-width="2" opacity=".5"/>
+          <path d="M-20 150 C 130 130, 250 200, 420 165" fill="none" stroke="#4F8574" stroke-width="1.4" opacity=".45"/>
+        </svg></div>
+        <div class="body"><h3>Baths &amp; vanities</h3><p>Vanity tops, tub surrounds and shower thresholds cut to match — quartz where you want it worry-free.</p></div>
+      </div>
+      <div class="what-card reveal">
+        <div class="pic"><svg viewBox="0 0 400 267" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Fireplaces and features">
+          <defs><filter id="w3"><feTurbulence type="fractalNoise" baseFrequency="0.015 0.022" numOctaves="5" seed="30"/><feColorMatrix type="matrix" values="0 0 0 0 0.12 0 0 0 0 0.14 0 0 0 0 0.14 0 0 0 0.92 0"/></filter></defs>
+          <rect width="400" height="267" fill="#1b1f20"/><rect width="400" height="267" filter="url(#w3)" opacity=".6"/>
+          <path d="M120 -20 C 90 90, 160 150, 110 287" fill="none" stroke="#4F8574" stroke-width="2.2" opacity=".55"/>
+          <path d="M280 -20 C 300 120, 240 180, 300 287" fill="none" stroke="#6FA593" stroke-width="1.2" opacity=".4"/>
+        </svg></div>
+        <div class="body"><h3>Fireplaces &amp; features</h3><p>Surrounds, hearths, waterfall bars and accent walls — the statement pieces a room is built around.</p></div>
+      </div>
+    </div>
+
+    <div class="materials reveal">
+      <span class="lbl">Materials we fabricate</span>
+      <div class="mat-row">
+        <span class="mat-chip">Granite</span>
+        <span class="mat-chip">Marble</span>
+        <span class="mat-chip">Quartz</span>
+        <span class="mat-chip">Quartzite</span>
+        <span class="mat-chip">Soapstone</span>
+        <span class="mat-chip">Travertine</span>
+      </div>
+      <p class="mat-note">Full access to the lines our clients ask for — Cambria, Silestone, Caesarstone, Neolith, Cosentino, Vadara and more. Not sure what fits your kitchen? Bring a cabinet door and a photo; we'll walk the yard with you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PORTFOLIO ================= -->
+<section class="band" id="work">
+  <div class="wrap">
+    <div class="head-block reveal">
+      <span class="eyebrow">Recent work</span>
+      <h2 class="display">Slabs we've placed around Atlanta.</h2>
+    </div>
+    <div class="port-grid">
+      <!-- Placeholder tiles: swap each <svg> for a real project photo -->
+      <div class="port-tile reveal"><svg viewBox="0 0 300 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><filter id="p1"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="5" seed="2"/><feColorMatrix type="matrix" values="0 0 0 0 0.16 0 0 0 0 0.19 0 0 0 0 0.19 0 0 0 0.9 0"/></filter></defs><rect width="300" height="600" fill="#20262b"/><rect width="300" height="600" filter="url(#p1)" opacity=".6"/><path d="M-20 200 C 100 160, 200 280, 320 230" fill="none" stroke="#4F8574" stroke-width="2.4" opacity=".55"/><path d="M120 -20 C 90 200, 160 380, 110 620" fill="none" stroke="#6FA593" stroke-width="1.2" opacity=".4"/></svg><span class="cap">Waterfall island · Brookhaven</span></div>
+      <div class="port-tile reveal"><svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><filter id="p2"><feTurbulence type="fractalNoise" baseFrequency="0.013 0.02" numOctaves="4" seed="9"/><feColorMatrix type="matrix" values="0 0 0 0 0.85 0 0 0 0 0.85 0 0 0 0 0.82 0 0 0 0.9 0"/></filter></defs><rect width="300" height="300" fill="#ecebe4"/><rect width="300" height="300" filter="url(#p2)" opacity=".5"/><path d="M-20 120 C 100 90, 200 180, 320 140" fill="none" stroke="#B08D57" stroke-width="2" opacity=".5"/></svg><span class="cap">Marble bath · Buckhead</span></div>
+      <div class="port-tile reveal"><svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><filter id="p3"><feTurbulence type="fractalNoise" baseFrequency="0.015 0.02" numOctaves="5" seed="15"/><feColorMatrix type="matrix" values="0 0 0 0 0.13 0 0 0 0 0.16 0 0 0 0 0.16 0 0 0 0.9 0"/></filter></defs><rect width="300" height="300" fill="#1b1f20"/><rect width="300" height="300" filter="url(#p3)" opacity=".6"/><path d="M-20 160 C 100 120, 200 220, 320 170" fill="none" stroke="#4F8574" stroke-width="2.4" opacity=".55"/></svg><span class="cap">Quartzite perimeter · Decatur</span></div>
+      <div class="port-tile reveal"><svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><filter id="p4"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.021" numOctaves="4" seed="24"/><feColorMatrix type="matrix" values="0 0 0 0 0.18 0 0 0 0 0.2 0 0 0 0 0.2 0 0 0 0.9 0"/></filter></defs><rect width="300" height="300" fill="#242a2b"/><rect width="300" height="300" filter="url(#p4)" opacity=".6"/><path d="M60 -20 C 90 120, 40 200, 90 320" fill="none" stroke="#6FA593" stroke-width="1.6" opacity=".5"/><path d="M-20 180 C 120 150, 220 240, 320 200" fill="none" stroke="#B08D57" stroke-width="1.4" opacity=".4"/></svg><span class="cap">Granite &amp; hearth · Marietta</span></div>
+      <div class="port-tile reveal"><svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><filter id="p5"><feTurbulence type="fractalNoise" baseFrequency="0.014 0.019" numOctaves="5" seed="33"/><feColorMatrix type="matrix" values="0 0 0 0 0.85 0 0 0 0 0.85 0 0 0 0 0.82 0 0 0 0.9 0"/></filter></defs><rect width="300" height="300" fill="#eceae3"/><rect width="300" height="300" filter="url(#p5)" opacity=".5"/><path d="M-20 140 C 100 110, 200 200, 320 160" fill="none" stroke="#4F8574" stroke-width="1.8" opacity=".5"/></svg><span class="cap">Waterfall bar · Sandy Springs</span></div>
+      <div class="port-tile reveal"><svg viewBox="0 0 300 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><filter id="p6"><feTurbulence type="fractalNoise" baseFrequency="0.011 0.018" numOctaves="5" seed="41"/><feColorMatrix type="matrix" values="0 0 0 0 0.15 0 0 0 0 0.18 0 0 0 0 0.18 0 0 0 0.9 0"/></filter></defs><rect width="300" height="600" fill="#1e2426"/><rect width="300" height="600" filter="url(#p6)" opacity=".6"/><path d="M180 -20 C 150 200, 210 380, 160 620" fill="none" stroke="#4F8574" stroke-width="2.4" opacity=".55"/><path d="M-20 320 C 100 280, 200 400, 320 350" fill="none" stroke="#B08D57" stroke-width="1.4" opacity=".4"/></svg><span class="cap">Book-matched feature wall · Vinings</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROOF ================= -->
+<section class="band lighter">
+  <div class="wrap">
+    <div class="head-block reveal">
+      <span class="eyebrow on-light">Proof, not promises</span>
+      <h2 class="display">Fifteen years of neighbors sending neighbors.</h2>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="n">15+</div><div class="k">Years fabricating</div></div>
+      <div class="stat"><div class="n">100%</div><div class="k">Materials &amp; workmanship warranty</div></div>
+      <div class="stat"><div class="n">1</div><div class="k">Team, start to finish</div></div>
+      <div class="stat"><div class="n">3</div><div class="k">Generations around stone</div></div>
+    </div>
+
+    <div class="tstack">
+      <div class="quote reveal">
+        <p>We love the countertops. They're beautiful and your guys were so easy to work with, and did a really good job. I've sent pictures everywhere and would recommend you to anyone.</p>
+        <div class="who"><span class="dot">J</span>Joyce C.</div>
+      </div>
+      <div class="quote reveal">
+        <p>Absolutely wonderful. I've already referred you to several people. Your crew is great, and the entire process was quick, easy and professional. I was very pleased.</p>
+        <div class="who"><span class="dot">A</span>Angelia P.</div>
+      </div>
+      <div class="quote reveal">
+        <p>I loved the countertops and was amazed with the final results. Your professionalism impressed me and made me very comfortable. Thank you for the job you did in my house.</p>
+        <div class="who"><span class="dot">L</span>Lucia J.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA / CONTACT ================= -->
+<section class="band cta-final" id="contact">
+  <div class="hero-slab" aria-hidden="true">
+    <svg preserveAspectRatio="xMidYMid slice" viewBox="0 0 1400 700">
+      <rect width="1400" height="700" fill="url(#base1)"/>
+      <rect width="1400" height="700" filter="url(#stone1)" opacity="0.5"/>
+      <path d="M300 -20 C 240 180, 420 320, 280 470 S 420 720, 300 920" fill="none" stroke="#4F8574" stroke-width="2" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="hero-veil" aria-hidden="true"></div>
+  <div class="wrap cta-inner">
+    <div class="reveal">
+      <span class="eyebrow">Start your project</span>
+      <h2 class="display" style="margin-top:18px">Come walk the yard. Stand in front of your slab.</h2>
+      <p class="lede">Bring a cabinet sample and a photo of your space. We'll show you real slabs in your budget, take a look at your layout, and give you a straight quote — no showroom pressure.</p>
+      <div class="hero-ctas" style="margin-top:34px">
+        <a class="btn btn-primary" href="tel:+17702460333">Call 770-246-0333</a>
+        <a class="btn btn-ghost" href="mailto:info@stonedesigncountertops.com">Request a quote →</a>
+      </div>
+    </div>
+    <div class="contact-card reveal">
+      <div class="row"><div class="k">Slab yard &amp; shop</div><div class="v">2999 Pacific Drive, Suite B<br>Norcross, Georgia 30071</div></div>
+      <div class="row"><div class="k">Office</div><div class="v"><a href="tel:+17702460333">770-246-0333</a></div></div>
+      <div class="row"><div class="k">Serving</div><div class="v">Metro Atlanta &amp; surrounding counties</div></div>
+      <div class="row"><div class="k">Visits</div><div class="v">By appointment — we'll walk the yard with you</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="brand" href="#top" style="font-size:1.3rem">
+        <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 L34 12 L34 28 L20 37 L6 28 L6 12 Z" fill="none" stroke="#4F8574" stroke-width="1.6"/><path d="M6 12 L20 21 L34 12 M20 21 L20 37" fill="none" stroke="#4F8574" stroke-width="1.2" opacity=".6"/></svg>
+        Stone&nbsp;Design
+      </a>
+      <div class="foot-nav">
+        <div class="foot-col">
+          <h5>Explore</h5>
+          <a href="#why">Why us</a>
+          <a href="#how">How we work</a>
+          <a href="#what">What we make</a>
+          <a href="#work">Recent work</a>
+        </div>
+        <div class="foot-col">
+          <h5>Rooms</h5>
+          <a href="#what">Kitchens</a>
+          <a href="#what">Baths &amp; vanities</a>
+          <a href="#what">Fireplaces</a>
+          <a href="#what">Features</a>
+        </div>
+        <div class="foot-col">
+          <h5>Visit</h5>
+          <a href="#contact">Book a yard visit</a>
+          <a href="tel:+17702460333">770-246-0333</a>
+          <a href="#contact">Norcross, GA</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>JRT Corp. DBA Stone Design Countertops · © 2026</span>
+      <span>Family-owned · Fabricated in Norcross, Georgia</span>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script>
+(function(){
+  var root = document.querySelector('.sd-root');
+  if(!root) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce) return;
+  root.classList.add('sd-anim');
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  root.querySelectorAll('.reveal').forEach(function(el,i){
+    el.style.transitionDelay = Math.min((i%6)*0.06, 0.3) + 's';
+    io.observe(el);
+  });
+})();
+</script>
